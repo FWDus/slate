@@ -270,15 +270,13 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <span class="o">}</span>
 </code></pre>
 <blockquote>
-<p>Multiple Districts:
-<code class="prettyprint">
-{
-  &quot;status&quot;:400,
-  &quot;message&quot;: &quot;{{ postal_code }} belongs to more than one Congressional District. Please provide a full address.&quot;
-}
-</code></p>
+<p>Multiple Districts:</p>
 </blockquote>
-
+<pre class="highlight shell tab-shell"><code><span class="o">{</span>
+  <span class="s2">"status"</span>:400,
+  <span class="s2">"message"</span>: <span class="s2">"{{ postal_code }} belongs to more than one Congressional District. Please provide a full address."</span>
+<span class="o">}</span>
+</code></pre>
 <p>This endpoint creates a Contact in HubSpot CRM. For the remainder of this document HubSpot Contacts will be referred to as Supporters.</p>
 
 <p>When a Postal Code is provided then the API needs to look up the Congressional District from <a href="https://developers.google.com/civic-information/">Google Civic API</a>. If the result from <a href="https://developers.google.com/civic-information/">Google Civic API</a> returns multiple Congressional Districts then the &ldquo;Multiple District&rdquo; error should be returned.</p>
