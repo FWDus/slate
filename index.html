@@ -265,15 +265,17 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
+
+<aside class="success">Success</aside>
 <pre class="highlight shell tab-shell"><code>
 <span class="o">{</span>
   <span class="s2">"status"</span>:200
 <span class="o">}</span>
 
-
+&lt;aside <span class="nv">class</span><span class="o">=</span><span class="s2">"warning"</span>&gt;Error&lt;/aside&gt;
 <span class="o">{</span>
   <span class="s2">"status"</span>:400,
-  <span class="s2">"message"</span>: <span class="s2">"{postal_code} belongs to more than one Congressional District. Please provide a full address."</span>
+  <span class="s2">"message"</span>: <span class="s2">"{{ postal_code }} belongs to more than one Congressional District. Please provide a full address."</span>
 <span class="o">}</span>
 </code></pre>
 <p>This endpoint creates a Contact in HubSpot CRM. For the remainder of this document HubSpot Contacts will be referred to as Supporters.</p>
