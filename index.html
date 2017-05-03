@@ -283,29 +283,41 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <p>When a Postal Code is provided then the API needs to look up the Congressional District from <a href="https://developers.google.com/civic-information/">Google Civic API</a>. </p>
 
 <p>If the result from <a href="https://developers.google.com/civic-information/">Google Civic API</a> returns multiple Congressional Districts then the &ldquo;Multiple District&rdquo; error should be returned.</p>
-<pre class="highlight plaintext"><code>
-### HTTP Request
 
-`GET http://example.com/api/kittens`
+<h3 id="http-request">HTTP Request</h3>
 
-### Query Parameters
+<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+<h3 id="query-parameters">Query Parameters</h3>
 
-&lt;aside class="success"&gt;
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include_cats</td>
+<td>false</td>
+<td>If set to true, the result will also include cats.</td>
+</tr>
+<tr>
+<td>available</td>
+<td>true</td>
+<td>If set to false, the result will include kittens that have already been adopted.</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
 Remember — a happy kitten is an authenticated kitten!
-&lt;/aside&gt;
+</aside>
 
-## Get a Specific Kitten
+<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
+<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
