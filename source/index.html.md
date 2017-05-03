@@ -60,7 +60,8 @@ curl -H "Authorization: meowmeowmeow" -H "Content-Type: application/json" -X POS
   "status":200
 }
 ```
-> Multiple Districts:
+
+> Multiple Districts Response:
 
 ```shell
 {
