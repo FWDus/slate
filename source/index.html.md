@@ -55,13 +55,13 @@ curl -H "Authorization: meowmeowmeow" -H "Content-Type: application/json" -X POS
 
 > The above command returns JSON structured like this:
 
-```json
-<aside class="success">Sucess</aside>
+```shell
+
 {
   "status":200
 }
 
-<aside class="warning">Multiple Districts</aside>
+
 {
   "status":400,
   "message": "{postal_code} belongs to more than one Congressional District. Please provide a full address."
