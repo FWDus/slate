@@ -53,16 +53,15 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 curl -H "Authorization: meowmeowmeow" -H "Content-Type: application/json" -X POST -d '{"email":"supporter@email.com","postal_code":"94133"}' http://api.fwd.us/supporter
 ```
 
-> The above command returns JSON structured like this:
+> Success Response:
 
-<aside class="success">Success</aside>
 ```shell
-
 {
   "status":200
 }
-
-<aside class="warning">Error</aside>
+```
+> Multiple Districts:
+> ```
 {
   "status":400,
   "message": "{{ postal_code }} belongs to more than one Congressional District. Please provide a full address."
@@ -71,9 +70,7 @@ curl -H "Authorization: meowmeowmeow" -H "Content-Type: application/json" -X POS
 
 This endpoint creates a Contact in HubSpot CRM. For the remainder of this document HubSpot Contacts will be referred to as Supporters.
 
-When a Postal Code is provided then the API needs to look up the Congressional District from [Google Civic API](https://developers.google.com/civic-information/). 
-
-If the result from [Google Civic API](https://developers.google.com/civic-information/) returns multiple Congressional Districts then the "Multiple District" error should be returned.
+When a Postal Code is provided then the API needs to look up the Congressional District from [Google Civic API](https://developers.google.com/civic-information/). If the result from [Google Civic API](https://developers.google.com/civic-information/) returns multiple Congressional Districts then the "Multiple District" error should be returned.
 
 ### HTTP Request
 
