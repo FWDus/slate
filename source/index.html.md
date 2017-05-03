@@ -55,16 +55,17 @@ curl -H "Authorization: meowmeowmeow" -H "Content-Type: application/json" -X POS
 
 > The above command returns JSON structured like this:
 
+<aside class="success">Success</aside>
 ```shell
 
 {
   "status":200
 }
 
-
+<aside class="warning">Error</aside>
 {
   "status":400,
-  "message": "{postal_code} belongs to more than one Congressional District. Please provide a full address."
+  "message": "{{ postal_code }} belongs to more than one Congressional District. Please provide a full address."
 }
 ```
 
@@ -73,8 +74,6 @@ This endpoint creates a Contact in HubSpot CRM. For the remainder of this docume
 When a Postal Code is provided then the API needs to look up the Congressional District from [Google Civic API](https://developers.google.com/civic-information/). 
 
 If the result from [Google Civic API](https://developers.google.com/civic-information/) returns multiple Congressional Districts then the "Multiple District" error should be returned.
-
-```
 
 ### HTTP Request
 
