@@ -87,7 +87,7 @@ Each request must either have a `postal_code` or a `full_address`.
 ### Query Parameters
 
 Parameter | Default | Type | Description
---------- | ------- | -----------
+--------- | ------- | ---- | -----------
 email | required | string | The email address is the primary key and unique identifier for a Supporter in HubSpot.
 postal_code | optional | string | If a Postal Code is provided then the API needs to look up the Congressional District from [Google Civic API](https://developers.google.com/civic-information/). It should also look up the City, State/Region and Country via the [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/start?csw=1).<br /><br />If the result from [Google Civic API](https://developers.google.com/civic-information/) returns multiple Congressional Districts then the "Multiple District" error should be returned and the Supporter should not be saved in HubSpot.
 google_place_id | optional | string | When a Google Place ID is provided via a [Google Place Autocomplete](hhttps://developers.google.com/places/web-service/autocomplete) submission then the address should be looked up via a [Google Place Detail request](https://developers.google.com/places/web-service/details#PlaceDetailsRequests). That address should also look up the Congressional District from [Google Civic API](https://developers.google.com/civic-information/). HubSpot should be populated with the Congressional District, Street Address, City, Postal Code, State/Region, Country.
