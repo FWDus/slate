@@ -266,20 +266,32 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <p>Success Response:</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="o">{</span>
-  <span class="s2">"status"</span>:200
+  <span class="s2">"status"</span>: 200,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"vid"</span>: 3234574,
+    <span class="s2">"isNew"</span>: <span class="nb">false</span>
+  <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
 <blockquote>
-<p>Multiple Districts:</p>
+<p>Multiple Districts Response:</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="o">{</span>
-  <span class="s2">"status"</span>:400,
+  <span class="s2">"status"</span>: 400,
   <span class="s2">"message"</span>: <span class="s2">"{{ postal_code }} belongs to more than one Congressional District. Please provide a full address."</span>
 <span class="o">}</span>
 </code></pre>
-<p>This endpoint creates a Contact in HubSpot CRM. For the remainder of this document HubSpot Contacts will be referred to as Supporters.</p>
+<p>This endpoint <a href="https://developers.hubspot.com/docs/methods/contacts/create_or_update">creates or updates a Contact in HubSpot CRM</a>. For the remainder of this document HubSpot Contacts will be referred to as Supporters.</p>
 
-<p>When a Postal Code is provided then the API needs to look up the Congressional District from <a href="https://developers.google.com/civic-information/">Google Civic API</a>. If the result from <a href="https://developers.google.com/civic-information/">Google Civic API</a> returns multiple Congressional Districts then the &ldquo;Multiple District&rdquo; error should be returned.</p>
+<p>Each request must either have a Postal Code or a Full Address.</p>
+
+<p><strong>Postal Code</strong>
+If a Postal Code is provided then the API needs to look up the Congressional District from <a href="https://developers.google.com/civic-information/">Google Civic API</a>. It should also look up the City, State/Region and Country via the <a href="https://developers.google.com/maps/documentation/geocoding/start?csw=1">Google Geocoding API</a></p>
+
+<p>If the result from <a href="https://developers.google.com/civic-information/">Google Civic API</a> returns multiple Congressional Districts then the &ldquo;Multiple District&rdquo; error should be returned and the Supporter should not be saved in HubSpot.</p>
+
+<p><strong>Full Address</strong>
+When a Full Address is provided via a <a href="https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform">Google Place Autocomplete Address Form</a> submission then Supporter&rsquo;s HubSpot properties should be populated with the Congressional District, Street Address, City, Postal Code, State/Region, Country.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
