@@ -47,10 +47,10 @@ You must replace <code>examplekey</code> with your personal API key.
 
 # Supporters
 
-## Create a Supporter
+## Create or Update a Supporter
 
 ```shell
-curl -H "Authorization: examplekey" -H "Content-Type: application/json" -X POST -d '{"email":"supporter@email.com","postal_code":"94133"}' http://api.fwd.us/supporter
+curl -H "Authorization: examplekey" -H "Content-Type: application/json" -X POST -d '{"email":"supporter@email.com","postal_code":"94133"}' https://api.fwd.us/supporter
 ```
 
 > Success Response:
@@ -80,7 +80,7 @@ Each request must either have a `postal_code` or a `full_address`.
 
 ### HTTP Request
 
-`POST http://api.fwd.us/supporter`
+`POST https://api.fwd.us/supporter`
 
 ### Query Parameters
 
