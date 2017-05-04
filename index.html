@@ -293,11 +293,33 @@ curl -H <span class="s2">"Authorization: examplekey"</span> -H <span class="s2">
 
 <h3 id="query-parameters">Query Parameters</h3>
 
-<p>Parameter | Default | Type | Description
-&mdash;&mdash;&mdash; | &mdash;&mdash;- | &mdash;&mdash;&mdash;&ndash;
-email | required | string | The email address is the primary key and unique identifier for a Supporter in HubSpot.
-postal_code | optional | string | If a Postal Code is provided then the API needs to look up the Congressional District from <a href="https://developers.google.com/civic-information/">Google Civic API</a>. It should also look up the City, State/Region and Country via the <a href="https://developers.google.com/maps/documentation/geocoding/start?csw=1">Google Geocoding API</a>.<br /><br />If the result from <a href="https://developers.google.com/civic-information/">Google Civic API</a> returns multiple Congressional Districts then the &ldquo;Multiple District&rdquo; error should be returned and the Supporter should not be saved in HubSpot.
-google_place_id | optional | string | When a Google Place ID is provided via a <a href="hhttps://developers.google.com/places/web-service/autocomplete">Google Place Autocomplete</a> submission then the address should be looked up via a <a href="https://developers.google.com/places/web-service/details#PlaceDetailsRequests">Google Place Detail request</a>. That address should also look up the Congressional District from <a href="https://developers.google.com/civic-information/">Google Civic API</a>. HubSpot should be populated with the Congressional District, Street Address, City, Postal Code, State/Region, Country.</p>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>required</td>
+<td>string</td>
+<td>The email address is the primary key and unique identifier for a Supporter in HubSpot.</td>
+</tr>
+<tr>
+<td>postal_code</td>
+<td>optional</td>
+<td>string</td>
+<td>If a Postal Code is provided then the API needs to look up the Congressional District from <a href="https://developers.google.com/civic-information/">Google Civic API</a>. It should also look up the City, State/Region and Country via the <a href="https://developers.google.com/maps/documentation/geocoding/start?csw=1">Google Geocoding API</a>.<br /><br />If the result from <a href="https://developers.google.com/civic-information/">Google Civic API</a> returns multiple Congressional Districts then the &ldquo;Multiple District&rdquo; error should be returned and the Supporter should not be saved in HubSpot.</td>
+</tr>
+<tr>
+<td>google_place_id</td>
+<td>optional</td>
+<td>string</td>
+<td>When a Google Place ID is provided via a <a href="hhttps://developers.google.com/places/web-service/autocomplete">Google Place Autocomplete</a> submission then the address should be looked up via a <a href="https://developers.google.com/places/web-service/details#PlaceDetailsRequests">Google Place Detail request</a>. That address should also look up the Congressional District from <a href="https://developers.google.com/civic-information/">Google Civic API</a>. HubSpot should be populated with the Congressional District, Street Address, City, Postal Code, State/Region, Country.</td>
+</tr>
+</tbody></table>
 
 <aside class="success">
 Remember — a happy API endpoint is an authenticated API endpoint!
