@@ -241,26 +241,26 @@
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"https://api.fwd.us/"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+  -H <span class="s2">"Authorization: examplekey"</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+<p>Make sure to replace <code class="prettyprint">examplekey</code> with your API key.</p>
 </blockquote>
 
 <p>FWD uses API keys to allow access to the API. You can register a new FWD API key at our <a href="https://www.fwd.us/api">developer portal</a>.</p>
 
 <p>FWD expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<p><code class="prettyprint">Authorization: examplekey</code></p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>examplekey</code> with your personal API key.
 </aside>
 
 <h1 id="supporters">Supporters</h1>
 
 <h2 id="create-a-supporter">Create a Supporter</h2>
-<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: meowmeowmeow"</span> -H <span class="s2">"Content-Type: application/json"</span> -X POST -d <span class="s1">'{"email":"supporter@email.com","postal_code":"94133"}'</span> http://api.fwd.us/supporter
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: examplekey"</span> -H <span class="s2">"Content-Type: application/json"</span> -X POST -d <span class="s1">'{"email":"supporter@email.com","postal_code":"94133"}'</span> http://api.fwd.us/supporter
 </code></pre>
 <blockquote>
 <p>Success Response:</p>
@@ -285,17 +285,13 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 
 <p>Each request must either have a Postal Code or a Full Address.</p>
 
-<p><strong>Postal Code</strong>
-If a Postal Code is provided then the API needs to look up the Congressional District from <a href="https://developers.google.com/civic-information/">Google Civic API</a>. It should also look up the City, State/Region and Country via the <a href="https://developers.google.com/maps/documentation/geocoding/start?csw=1">Google Geocoding API</a></p>
+<p><strong>Postal Code</strong></p>
 
-<p>If the result from <a href="https://developers.google.com/civic-information/">Google Civic API</a> returns multiple Congressional Districts then the &ldquo;Multiple District&rdquo; error should be returned and the Supporter should not be saved in HubSpot.</p>
-
-<p><strong>Full Address</strong>
-When a Full Address is provided via a <a href="https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform">Google Place Autocomplete Address Form</a> submission then Supporter&rsquo;s HubSpot properties should be populated with the Congressional District, Street Address, City, Postal Code, State/Region, Country.</p>
+<p><strong>Full Address</strong></p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
+<p><code class="prettyprint">POST http://api.fwd.us/supporter</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -307,35 +303,40 @@ When a Full Address is provided via a <a href="https://developers.google.com/map
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>email</td>
+<td>required</td>
+<td>The email address is the primary key and unique identifier for a Supporter in HubSpot.</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>postal_code</td>
+<td>optional</td>
+<td>If a Postal Code is provided then the API needs to look up the Congressional District from <a href="https://developers.google.com/civic-information/">Google Civic API</a>. It should also look up the City, State/Region and Country via the <a href="https://developers.google.com/maps/documentation/geocoding/start?csw=1">Google Geocoding API</a>. If the result from <a href="https://developers.google.com/civic-information/">Google Civic API</a> returns multiple Congressional Districts then the &ldquo;Multiple District&rdquo; error should be returned and the Supporter should not be saved in HubSpot.</td>
+</tr>
+<tr>
+<td>full_address</td>
+<td>optional</td>
+<td>When a Full Address is provided via a <a href="https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform">Google Place Autocomplete Address Form</a> submission then Supporter&rsquo;s HubSpot properties should be populated with the Congressional District, Street Address, City, Postal Code, State/Region, Country.</td>
 </tr>
 </tbody></table>
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — a happy API endpoint is an authenticated API endpoint!
 </aside>
 
 <h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
 <pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'examplekey'</span><span class="p">)</span>
 <span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'examplekey'</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+  -H <span class="s2">"Authorization: examplekey"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'examplekey'</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 </code></pre>
 <blockquote>
