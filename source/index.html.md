@@ -57,7 +57,11 @@ curl -H "Authorization: meowmeowmeow" -H "Content-Type: application/json" -X POS
 
 ```shell
 {
-  "status":200
+  "status": 200,
+  "data": {
+    "vid": 3234574,
+    "isNew": false
+  }
 }
 ```
 
@@ -65,14 +69,22 @@ curl -H "Authorization: meowmeowmeow" -H "Content-Type: application/json" -X POS
 
 ```shell
 {
-  "status":400,
+  "status": 400,
   "message": "{{ postal_code }} belongs to more than one Congressional District. Please provide a full address."
 }
 ```
 
-This endpoint creates a Contact in HubSpot CRM. For the remainder of this document HubSpot Contacts will be referred to as Supporters.
+This endpoint [creates or updates a Contact in HubSpot CRM](https://developers.hubspot.com/docs/methods/contacts/create_or_update). For the remainder of this document HubSpot Contacts will be referred to as Supporters.
 
-When a Postal Code is provided then the API needs to look up the Congressional District from [Google Civic API](https://developers.google.com/civic-information/). If the result from [Google Civic API](https://developers.google.com/civic-information/) returns multiple Congressional Districts then the "Multiple District" error should be returned.
+Each request must either have a Postal Code or a Full Address.
+
+**Postal Code**
+If a Postal Code is provided then the API needs to look up the Congressional District from [Google Civic API](https://developers.google.com/civic-information/). It should also look up the City, State/Region and Country via the [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/start?csw=1)
+
+If the result from [Google Civic API](https://developers.google.com/civic-information/) returns multiple Congressional Districts then the "Multiple District" error should be returned and the Supporter should not be saved in HubSpot.
+
+**Full Address**
+When a Full Address is provided via a [Google Place Autocomplete Address Form](https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform) submission then Supporter's HubSpot properties should be populated with the Congressional District, Street Address, City, Postal Code, State/Region, Country.
 
 ### HTTP Request
 
